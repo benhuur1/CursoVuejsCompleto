@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>v-bind</title>
+</head>
+<style>
+
+</style>
+
+<body>
+  <div id="app">
+    <ul>
+      <li>
+        <a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_395dc9d151024b378fc1bb189ac1167d">Apple</a>
+      </li>
+      <li>
+        <a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/googl/quote?token=pk_395dc9d151024b378fc1bb189ac1167d">Google</a>
+      </li>
+      <li>
+        <a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/amzn/quote?token=pk_395dc9d151024b378fc1bb189ac1167d">Amazon</a>
+      </li>
+      <li>
+        <a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/ebay/quote?token=pk_395dc9d151024b378fc1bb189ac1167d">Ebay</a>
+      </li>
+      <li>
+        <a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/pypl/quote?token=pk_395dc9d151024b378fc1bb189ac1167d">Paypal</a>
+      </li>
+    </ul>
+    <div v-if="acao">
+      <p>Compania: {{acao.companyName}}</p>
+      <p>Último Preço da bolsa: {{acao.latestPrice}}</p>
+      <p>Valor de mercado: {{acao.marketCap}}</p>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        acao: {},
+      },
+      methods: {
+        puxarAcao(event) {
+          const url = event.currentTarget.href;
+          console.log(url);
+          fetch(url).then(response => response.json()).then(json => { this.acao = json; });
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
