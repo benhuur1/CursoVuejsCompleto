@@ -15,8 +15,17 @@
       <li v-for="(curso, index) in cursos">{{curso}} - {{index}}</li>
     </ul>
     <ul>
-      <li v-for="(valor, key, index) in estados">Indice: {{index}} - Chave: {{key}} - População: {{valor.populacao}} - Nome: {{valor.nome}}</li>
+      <li v-for="(valor, key, index) in estados" :key="key + nome">Indice: {{index}} - Chave: {{key}} - População: {{valor.populacao}} - Nome: {{valor.nome}}</li>
     </ul>
+    <div v-for="n in 10">{{n}}</div>
+
+    <h1>ativando a reatividade</h1>
+    <ul>
+      <li v-for="item in lista">{{item}}</li>
+    </ul>
+    <button @click="removerItem">Remover</button>
+    <button @click="mudarItem">Modificar</button>
+
   </div>
   <script>
     const vm = new Vue({
@@ -36,6 +45,16 @@
             populacao: "17 milhões",
             nome: "Rio de Janeiro"
           },
+        },
+        lista: ["Item 1", "Item 2", "Item 3"]
+      },
+      methods: {
+        removerItem() {
+          this.lista.pop(); // Ativa reatidade
+        },
+        mudarItem() {
+          this.$set(this.lista, 0, "Banana")
+          // this.lista[0] = "Banana"; // Não ativa realividade
         }
       }
     });

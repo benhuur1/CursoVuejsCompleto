@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>v-on e Eventos Globais</title>
+</head>
+<style>
+  body {
+    height: 2000px;
+    width: 2000px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <input @keydown.enter="ativar" type="text">
+    <p style="position: fixed;">{{totalScrollY}}</p>
+    <p style="position: fixed; left: 80px;">{{totalScrollX}}</p>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        totalScrollY: 0,
+        totalScrollX: 0
+      },
+      methods: {
+        ativar(event) {
+          console.log(event);
+        },
+        handleScoll() {
+          this.totalScrollY = window.scrollY;
+          this.totalScrollX = window.scrollX;
+        }
+      },
+      created() {
+        window.addEventListener("scroll", this.handleScoll);
+      }
+    });
+  </script>
+</body>
+
+</html>

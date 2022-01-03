@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>exercicio</title>
+</head>
+
+<body>
+  <!-- 
+  1 - Crie um criador de botões.
+
+  O usuário poderá definir:
+  width,
+  height,
+  font-size,
+  font-family,
+  text-align,
+  background,
+  color,
+  border-radius,
+
+  As escolhas serão feitas em campos de
+  formulário. Cada escolha deverá ser 
+  refletida em um elemento (o botão).
+
+
+  2 - Crie um formulário com, nome, email, telefone e mensagem.
+  Ao clicar em enviar, as informações preenchidas no formulário
+  devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+ -->
+  <style>
+    label {
+      display: block;
+    }
+
+    a {
+      margin-top: 50px;
+      display: block;
+    }
+  </style>
+
+  <div id="app">
+    <div class="formButton">
+      <label for="background">background</label>
+      <input id="background" type="color" v-model="btn.background" /> <br>
+      <label for="width">width</label>
+      <input id="width" type="text" v-model="btn.width" /> <br>
+      <label for="height">height</label>
+      <input id="height" type="text" v-model="btn.height" /> <br>
+      <label for="fontSize">fontSize</label>
+      <input id="fontSize" type="text" v-model="btn.fontSize" /> <br>
+      <label for="fontFamily">fontFamily</label>
+      <input id="fontFamily" type="text" v-model="btn.fontFamily" /> <br>
+      <label for="textAlign">textAlign</label>
+      <input id="textAlign" type="text" v-model="btn.textAlign" /> <br>
+      <label for="color">color</label>
+      <input id="color" type="text" v-model="btn.color" /> <br>
+      <label for="borderRadius">borderRadius</label>
+      <input id="borderRadius" type="text" v-model="btn.borderRadius" /> <br>
+      <label for="padding">padding</label>
+      <input id="padding" type="text" v-model="btn.padding" /> <br>
+      <label for="margin">margin</label>
+      <input id="margin" type="text" v-model="btn.margin" /> <br>
+      <ul>
+        <li v-for="(estilo, index) in btn">
+          <h4>{{index}}: {{estilo}}</h4>
+        </li>
+      </ul>
+      <a id="button" :style="btn" href="">Clique Aqui</a>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        btn: {
+          background: "red",
+          width: "100px",
+          height: "40px",
+          fontSize: "20px",
+          fontFamily: "Arial, sans-serif",
+          textAlign: "center",
+          color: "black",
+          borderRadius: "20%",
+          padding: "10px",
+          margin: "10px"
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>

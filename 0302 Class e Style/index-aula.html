@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>Class e Style</title>
+</head>
+<style>
+  .azul {
+    color: blue;
+  }
+  .ativo{
+    background-color: crimson;
+  }
+  .verde{
+    color: darkgreen;
+  }
+  .vermelho{
+    background-color: darkred;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <p :class="[cor, background]">Texto Azul</p>
+    <p :class="{ativo: estaAtivo, verde: elementoVerde}">Mostrar texto</p>
+    <p :style="{background: bgColor, color: textColor, fontSize: tamanho + 'px'}">Super text</p>
+    <button @click="estaAtivo = !estaAtivo">modfique</button>
+    <button @click="tamanho--">Diminuir texto</button>
+    <button @click="tamanho++">Aumentar texto</button>
+    <input type="text" :value="bgColor">
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        cor: "azul",
+        estaAtivo: true,
+        elementoVerde: 1,
+        background: "vermelho",
+        bgColor: "tomato",
+        textColor: "#fff",
+        tamanho: "20"
+      },
+
+    });
+  </script>
+</body>
+
+</html>
