@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>Lifecycle Hooks</title>
+</head>
+<style>
+</style>
+
+<body>
+  <div id="app">
+    <p>{{mensagem}}</p>
+    <ul>
+      <li v-for="(dado, key, index) in github ">{{index}} - {{key}}: {{dado}}</li>
+    </ul>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        mensagem: "Essa é uma mensagem",
+        github: {}
+      },
+      methods: {
+        puxarGithub() {
+          fetch("https://api.github.com/users/benhuur1")
+            .then(response => response.json())
+            .then(response => {
+              this.github = response;
+            });
+        }
+      },
+      beforeCreate() {
+      },
+      created() {
+        this.puxarGithub();
+        console.log(this.mensagem);
+        console.log("Elemento", this.$el)
+      },
+      beforeMount() {
+        console.log("beforeMount", this.mensagem);
+        console.log("Elemento", this.$el)
+      },
+      mounted() {
+        console.log("Elemento", this.$el)
+      }
+    });
+  </script>
+</body>
+
+</html>
