@@ -8,55 +8,34 @@
   <script src="../vue.js"></script>
   <title>Exercicio</title>
 </head>
-<style>
-</style>
-
-<!-- Utilize a api do github para
-mostrar todos os seus dados na tela.
-Faça o fetch das informações utilizando
-um dos hooks do vue:
-
-https://api.github.com/users/origamid (utilize o seu usuário)
- -->
-
-<!-- 
-  Crie um contador, onde seja possível clicar em
-  um botão e adicionar +1 ao número.
-
-  Toda vez que o contador mudar, mude o título da página
-  para o total do contador. Utilize um hook para isso
- -->
-
 
 <body>
+  <!-- 
+  Crie uma tela com 3 diferentes Componentes.
+
+  1 - Mostre o tempo do dia usando a API:
+  https://www.metaweather.com/api/location/455825/ (Código do Rio de Janeiro)
+
+  2 - Mostre a relação dolar/real
+  https://api.exchangeratesapi.io/latest?base=USD
+
+  3 - Mostre o valor de mercado da Apple (marketCap)
+  https://api.origamid.dev/stock/aapl/quote
+
+  Crie os componentes em arquivos separados e utilize import/export
+  O componente 1 deve ser registrado globalmente
+  O componente 2 deve ser registrado localmente dentro do componente 3.
+  O componente 3 deve ser registrado localmente da instância Vue.js
+ -->
+
   <div id="app">
-    <button @click="contador++">Adicionar: {{contador}}</button>
-    <ul>
-      <li v-for="(valor, chave) in github">{{chave}}: {{valor}}</li>
-    </ul>
+<tempo-hoje></tempo-hoje>
   </div>
-  <script>
+  <script type="module">
+    import TempoHoje from './TempoHoje.js';
+    Vue.component("TempoHoje", TempoHoje);
     const vm = new Vue({
       el: "#app",
-      data: {
-        github: {},
-        contador: 0,
-      },
-      methods: {
-        puxarGithub() {
-          fetch("https://api.github.com/users/benhuur1")
-            .then((r) => r.json())
-            .then((r) => {
-              this.github = r
-            })
-        }
-      },
-      updated() {
-        document.title = this.contador;
-      },
-      created() {
-        this.puxarGithub();
-      }
     });
   </script>
 </body>
